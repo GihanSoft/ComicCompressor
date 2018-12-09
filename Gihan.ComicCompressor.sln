@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor.UI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.Wpf.FolderSelector", "Gihan.Wpf.FolderSelector\Gihan.Wpf.FolderSelector.csproj", "{9152B924-A78E-426D-825F-8590C48E92DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor", "Gihan.ComicCompressor\Gihan.ComicCompressor.csproj", "{975B9F15-0B99-4612-87CA-E76351BAD569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9152B924-A78E-426D-825F-8590C48E92DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9152B924-A78E-426D-825F-8590C48E92DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9152B924-A78E-426D-825F-8590C48E92DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{975B9F15-0B99-4612-87CA-E76351BAD569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975B9F15-0B99-4612-87CA-E76351BAD569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975B9F15-0B99-4612-87CA-E76351BAD569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975B9F15-0B99-4612-87CA-E76351BAD569}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
