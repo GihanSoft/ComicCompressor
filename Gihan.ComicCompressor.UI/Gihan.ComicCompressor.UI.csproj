@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{134A4A27-683E-4129-A9D3-3A3685F90B11}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Gihan.ComicCompressor</RootNamespace>
-    <AssemblyName>Gihan.ComicCompressor</AssemblyName>
+    <RootNamespace>Gihan.ComicCompressor.UI</RootNamespace>
+    <AssemblyName>Gihan.ComicCompressor.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -102,7 +102,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Gihan.Wpf.FolderSelector\Gihan.Wpf.FolderSelector.csproj">
+      <Project>{9152b924-a78e-426d-825f-8590c48e92dd}</Project>
+      <Name>Gihan.Wpf.FolderSelector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Rar.exe" />
   </ItemGroup>

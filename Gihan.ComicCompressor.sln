@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor", "Gihan.ComicCompressor\Gihan.ComicCompressor.csproj", "{134A4A27-683E-4129-A9D3-3A3685F90B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor.UI", "Gihan.ComicCompressor.UI\Gihan.ComicCompressor.UI.csproj", "{134A4A27-683E-4129-A9D3-3A3685F90B11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.Wpf.FolderSelector", "Gihan.Wpf.FolderSelector\Gihan.Wpf.FolderSelector.csproj", "{9152B924-A78E-426D-825F-8590C48E92DD}"
 EndProject
