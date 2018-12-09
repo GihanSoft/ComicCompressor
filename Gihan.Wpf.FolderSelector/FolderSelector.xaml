@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Gihan.Wpf.FolderSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gihan.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Name="TxtPath" />
+        <Button Name="BtnBrowse" 
+                Grid.Column="1"
+                Padding="10 0"
+                Content="Browse" 
+                Click="BtnBrowse_Click"/>
+    </Grid>
+</UserControl>
