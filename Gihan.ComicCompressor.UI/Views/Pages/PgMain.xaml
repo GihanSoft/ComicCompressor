@@ -7,8 +7,22 @@
       xmlns:gwpf="clr-namespace:Gihan.Wpf;assembly=Gihan.Wpf.FolderSelector"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="White"
       Title="PgMain">
     <Grid>
-        <gwpf:FolderSelector DialogTitle="Please Select Manga Folder" VerticalAlignment="Top" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <gwpf:FolderSelector Name="Fs" 
+                             DialogTitle="Please Select Manga Folder" />
+        <WrapPanel Grid.Row="1">
+            <ComboBox Name="CboFormat" SelectedIndex="0" />
+        </WrapPanel>
+        <Button Name="BtnStart" 
+                Grid.Row="3" Content="Start" 
+                Click="BtnStart_Click"/>
     </Grid>
 </Page>

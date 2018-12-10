@@ -103,13 +103,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gihan.ComicCompressor\Gihan.ComicCompressor.csproj">
+      <Project>{975b9f15-0b99-4612-87ca-e76351bad569}</Project>
+      <Name>Gihan.ComicCompressor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gihan.Wpf.FolderSelector\Gihan.Wpf.FolderSelector.csproj">
       <Project>{9152b924-a78e-426d-825f-8590c48e92dd}</Project>
       <Name>Gihan.Wpf.FolderSelector</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Rar.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
