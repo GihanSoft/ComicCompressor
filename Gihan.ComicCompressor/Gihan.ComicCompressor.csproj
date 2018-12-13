@@ -45,8 +45,6 @@
     <Compile Include="CompressionFormat.cs" />
     <Compile Include="Compressor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RarCompressor.cs" />
-    <Compile Include="ZipCompressor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Rar.exe">

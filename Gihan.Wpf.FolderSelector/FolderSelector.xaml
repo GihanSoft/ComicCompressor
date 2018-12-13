@@ -11,10 +11,11 @@
             <ColumnDefinition />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <TextBox Name="TxtPath" />
+        <TextBox Name="TxtPath" Margin="4 0 2 0" />
         <Button Name="BtnBrowse" 
                 Grid.Column="1"
                 Padding="10 0"
+                Margin="2 0"
                 Content="Browse" 
                 Click="BtnBrowse_Click"/>
     </Grid>
