@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Threading;
+using System.Runtime;
 using System.Windows;
+
+using static System.Environment;
 
 namespace Gihan.ComicCompressor
 {
@@ -49,6 +51,8 @@ namespace Gihan.ComicCompressor
             else
             {
                 base.OnStartup(e);
+                ProfileOptimization.SetProfileRoot(GetFolderPath(SpecialFolder.LocalApplicationData));
+                ProfileOptimization.StartProfile("Startup.Profile");
             }
         }
     }

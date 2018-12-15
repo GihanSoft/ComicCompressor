@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Gihan.ComicCompressor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("GihanSoft")]
 [assembly: AssemblyProduct("Gihan.ComicCompressor")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © GihanSoft 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

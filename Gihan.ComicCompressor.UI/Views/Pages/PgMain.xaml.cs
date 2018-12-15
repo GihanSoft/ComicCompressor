@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Gihan.ComicCompressor.Views.Pages
 {
@@ -21,7 +20,7 @@ namespace Gihan.ComicCompressor.Views.Pages
             CboFormat.ItemsSource = Enum.GetValues(typeof(CompressionFormat));
         }
 
-        private async void BtnStart_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             Compressor compressor;
             if (SpToCompressList.Children.Count == 0)
