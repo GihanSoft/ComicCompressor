@@ -1,0 +1,31 @@
+﻿<mah:MetroWindow
+    x:Class="ComicC.InfoWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComicC"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="InfoWin" Height="450" Width="800">
+    <Grid>
+        <RichTextBox Margin="5" IsReadOnly="True" IsDocumentEnabled="True">
+            <RichTextBox.Document>
+                <FlowDocument>
+                    <Paragraph>
+                        <!--<Image Source="comicc.ico" Width="25" />-->
+                        <Run FontWeight="Bold" FontSize="30">ComicC</Run>
+                        <LineBreak />
+                        <Run FontSize="20">GihanSoft (c) 2020</Run>
+                    </Paragraph>
+
+                    <Paragraph>
+                        this application used
+                        <Hyperlink NavigateUri="https://mahapps.com/" RequestNavigate="Hyperlink_RequestNavigate">MahApps.Metro</Hyperlink>
+                        for GUI theme and few extra controls
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox.Document>
+        </RichTextBox>
+    </Grid>
+</mah:MetroWindow>
