@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor.UI", "Gihan.ComicCompressor.UI\Gihan.ComicCompressor.UI.csproj", "{134A4A27-683E-4129-A9D3-3A3685F90B11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.Wpf.FolderSelector", "Gihan.Wpf.FolderSelector\Gihan.Wpf.FolderSelector.csproj", "{9152B924-A78E-426D-825F-8590C48E92DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.ComicCompressor", "Gihan.ComicCompressor\Gihan.ComicCompressor.csproj", "{975B9F15-0B99-4612-87CA-E76351BAD569}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gihan.Wpf.DoubleEntry", "Gihan.Wpf.DoubleEntry\Gihan.Wpf.DoubleEntry.csproj", "{459F0DB9-E387-4BE3-8EAC-9EAAFC75FFB8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A48CA01D-2A2A-4648-B19E-832A25B8B0C9}"
 	ProjectSection(SolutionItems) = preProject
 		comicc.ico = comicc.ico
@@ -18,30 +10,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{BAB600DA-AA1D-4174-A09C-339BB41D8486}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicC", "ComicC\ComicC.csproj", "{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{134A4A27-683E-4129-A9D3-3A3685F90B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{134A4A27-683E-4129-A9D3-3A3685F90B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{134A4A27-683E-4129-A9D3-3A3685F90B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{134A4A27-683E-4129-A9D3-3A3685F90B11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9152B924-A78E-426D-825F-8590C48E92DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9152B924-A78E-426D-825F-8590C48E92DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9152B924-A78E-426D-825F-8590C48E92DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9152B924-A78E-426D-825F-8590C48E92DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{975B9F15-0B99-4612-87CA-E76351BAD569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{975B9F15-0B99-4612-87CA-E76351BAD569}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{975B9F15-0B99-4612-87CA-E76351BAD569}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{975B9F15-0B99-4612-87CA-E76351BAD569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{459F0DB9-E387-4BE3-8EAC-9EAAFC75FFB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{459F0DB9-E387-4BE3-8EAC-9EAAFC75FFB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{459F0DB9-E387-4BE3-8EAC-9EAAFC75FFB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{459F0DB9-E387-4BE3-8EAC-9EAAFC75FFB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAB600DA-AA1D-4174-A09C-339BB41D8486}.Debug|Any CPU.ActiveCfg = Debug
 		{BAB600DA-AA1D-4174-A09C-339BB41D8486}.Release|Any CPU.ActiveCfg = Release
+		{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
