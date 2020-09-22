@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_E6D7FEB0310345B7A47F5FBA514C74E3"
+        "MsmKey" = "8:_E480C98AF58642B882C7EB3E23602CFD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -180,15 +180,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicC"
-        "ProductCode" = "8:{36CE7CA1-E7F3-4A3D-97CD-07313506578A}"
-        "PackageCode" = "8:{F4015380-DA65-472A-917C-5E065862B933}"
+        "ProductCode" = "8:{2E81010C-460D-45AD-8D54-389F69E42A97}"
+        "PackageCode" = "8:{FD8FAE11-43A0-4F4D-B264-03FE391A35CE}"
         "UpgradeCode" = "8:{88FC32E8-0016-47EB-8706-F83BC7E99EAB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:2.0.0"
         "Manufacturer" = "8:GihanSoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -198,7 +198,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_E480C98AF58642B882C7EB3E23602CFD"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -301,7 +301,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_18D4C1032CF04E0488F3D3F058C3206A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5037467833774A35A0D141228BE43FB9"
             {
             "Name" = "8:ComicC"
             "Arguments" = "8:"
@@ -309,13 +309,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_E480C98AF58642B882C7EB3E23602CFD"
             "Folder" = "8:_FFA84FE7C2B744AAA32024BCCFA94BBE"
             "WorkingFolder" = "8:_3BB93F0E110848F49F99FAE298C1CDCD"
-            "Icon" = "8:"
+            "Icon" = "8:_E480C98AF58642B882C7EB3E23602CFD"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CC1E157A37E1491BAB7085F85BC8F9B7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F2E6B81B00B145EA9C35A8D467D5706F"
             {
             "Name" = "8:ComicC"
             "Arguments" = "8:"
@@ -323,10 +323,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_E480C98AF58642B882C7EB3E23602CFD"
             "Folder" = "8:_E5900F8496544AB092A5B18910BE3846"
             "WorkingFolder" = "8:_3BB93F0E110848F49F99FAE298C1CDCD"
-            "Icon" = "8:"
+            "Icon" = "8:_E480C98AF58642B882C7EB3E23602CFD"
             "Feature" = "8:"
             }
         }
@@ -728,7 +728,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E4429F0B25C14A6AA3F11E4D8C0CDDC8"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1F8F2ED5085145CF8FFEB3F89DEC5BF2"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -756,9 +756,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E6D7FEB0310345B7A47F5FBA514C74E3"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E480C98AF58642B882C7EB3E23602CFD"
             {
-            "SourcePath" = "8:..\\ComicC\\obj\\Debug\\net461\\ComicC.exe"
+            "SourcePath" = "8:..\\ComicC\\obj\\Release\\net461\\ComicC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BB93F0E110848F49F99FAE298C1CDCD"
