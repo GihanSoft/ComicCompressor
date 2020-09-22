@@ -127,5 +127,10 @@ namespace ComicC
                 BrdMenu.Visibility == Visibility.Visible ?
                 Visibility.Collapsed : Visibility.Visible;
         }
+
+        private void BtnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            new InfoWin().ShowDialog();
+        }
     }
 }
