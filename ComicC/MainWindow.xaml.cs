@@ -1,7 +1,11 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,10 +30,12 @@ namespace ComicC
                 IsFolderPicker = true,
                 Multiselect = true
             };
-            if(dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 foreach (var item in dialog.FileNames)
                 {
+                    if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
+                        continue;
                     var chapterItem = new ChapterItem(item);
                     SpChapters.Children.Add(chapterItem);
                     chapterItem.DeleteClicked += (s, eventArg) =>
@@ -56,8 +62,16 @@ namespace ComicC
                             Path.GetFileName(item.ChapterPath)) + ".zip",
                         CompressionLevel.NoCompression,
                         false);
+                    if (ChkRemove.IsChecked ?? false)
+                    {
+                        Directory.Delete(item.ChapterPath, true);
+                    }
                 }
-                catch { }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, err.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    item.Background = new SolidColorBrush(Colors.Red);
+                }
                 item.Background = new SolidColorBrush(Colors.LightGreen);
                 await Task.Delay(100);
             }
@@ -75,10 +89,43 @@ namespace ComicC
             BrDrop.Visibility = Visibility.Collapsed;
         }
 
-        private void Grid_Drop(object sender, DragEventArgs e)
+        private async void Grid_Drop(object sender, DragEventArgs e)
         {
             Grid_DragLeave(sender, e);
-            //todo
+            //var fullData = e.Data.GetFormats().ToDictionary(f => f, f => e.Data.GetData(f));
+            var files = e.Data.GetData("FileDrop") as IEnumerable<string>;
+            if (files.Any(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory)))
+            {
+                files = files.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory));
+                foreach (var item in files)
+                {
+                    if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
+                        continue;
+                    var chapterItem = new ChapterItem(item);
+                    SpChapters.Children.Add(chapterItem);
+                    chapterItem.DeleteClicked += (s, eventArg) =>
+                    {
+                        SpChapters.Children.Remove(s as UIElement);
+                    };
+                    await Task.Delay(10);
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        private void Border_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            BrdMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            BrdMenu.Visibility =
+                BrdMenu.Visibility == Visibility.Visible ?
+                Visibility.Collapsed : Visibility.Visible;
         }
     }
 }

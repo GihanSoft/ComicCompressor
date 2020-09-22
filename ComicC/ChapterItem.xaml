@@ -6,16 +6,19 @@
              xmlns:local="clr-namespace:ComicC"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" VerticalAlignment="Top">
+             Margin="5 2.5"
+             BorderThickness="1" BorderBrush="#000"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:DesignHeight="50" d:DesignWidth="800" VerticalAlignment="Top">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <TextBlock Name="tb" />
+        <TextBlock Name="tb" VerticalAlignment="Center" Margin="5 0" />
         <Button Content="del" Grid.Column="1" mah:ControlsHelper.CornerRadius="100"
                 Height="{Binding ActualWidth, RelativeSource={RelativeSource self}}"
-                Click="Button_Click"
+                Click="Button_Click" Margin="2.5"
                 />
     </Grid>
 </UserControl>
