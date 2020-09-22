@@ -30,8 +30,13 @@ namespace ComicC
             {
                 foreach (var item in dialog.FileNames)
                 {
-                    SpChapters.Children.Add(new ChapterItem(item));
-                    await Task.Delay(100);
+                    var chapterItem = new ChapterItem(item);
+                    SpChapters.Children.Add(chapterItem);
+                    chapterItem.DeleteClicked += (s, eventArg) =>
+                    {
+                        SpChapters.Children.Remove(s as UIElement);
+                    };
+                    await Task.Delay(10);
                 }
             }
         }

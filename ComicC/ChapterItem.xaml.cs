@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ComicC
 {
@@ -12,8 +13,16 @@ namespace ComicC
             InitializeComponent();
             tb.Text = chapterPath;
             ChapterPath = chapterPath;
+            ToolTip = chapterPath;
         }
 
         public string ChapterPath { get; }
+
+        public event RoutedEventHandler DeleteClicked;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteClicked?.Invoke(this, e);
+        }
     }
 }
