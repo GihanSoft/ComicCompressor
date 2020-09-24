@@ -1,11 +1,9 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +21,23 @@ namespace ComicC
             InitializeComponent();
         }
 
+        public MainWindow(string[] chapters) : this()
+        {
+            foreach (var item in chapters)
+            {
+                if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
+                {
+                    continue;
+                }
+                var chapterItem = new ChapterItem(item);
+                SpChapters.Children.Add(chapterItem);
+                chapterItem.DeleteClicked += (s, eventArg) =>
+                {
+                    SpChapters.Children.Remove(s as UIElement);
+                };
+            }
+        }
+
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new CommonOpenFileDialog
@@ -35,14 +50,16 @@ namespace ComicC
                 foreach (var item in dialog.FileNames)
                 {
                     if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
+                    {
                         continue;
+                    }
                     var chapterItem = new ChapterItem(item);
                     SpChapters.Children.Add(chapterItem);
                     chapterItem.DeleteClicked += (s, eventArg) =>
                     {
                         SpChapters.Children.Remove(s as UIElement);
                     };
-                    await Task.Delay(10);
+                    await Task.Delay(10).ConfigureAwait(false);
                 }
             }
         }
@@ -52,7 +69,7 @@ namespace ComicC
             foreach (var item in SpChapters.Children.Cast<ChapterItem>())
             {
                 item.Background = new SolidColorBrush(Colors.LightYellow);
-                await Task.Delay(100);
+                await Task.Delay(10).ConfigureAwait(false);
                 try
                 {
                     ZipFile.CreateFromDirectory(
@@ -73,7 +90,7 @@ namespace ComicC
                     item.Background = new SolidColorBrush(Colors.Red);
                 }
                 item.Background = new SolidColorBrush(Colors.LightGreen);
-                await Task.Delay(100);
+                await Task.Delay(100).ConfigureAwait(false);
             }
         }
 
@@ -92,7 +109,6 @@ namespace ComicC
         private async void Grid_Drop(object sender, DragEventArgs e)
         {
             Grid_DragLeave(sender, e);
-            //var fullData = e.Data.GetFormats().ToDictionary(f => f, f => e.Data.GetData(f));
             var files = e.Data.GetData("FileDrop") as IEnumerable<string>;
             if (files.Any(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory)))
             {
@@ -107,12 +123,8 @@ namespace ComicC
                     {
                         SpChapters.Children.Remove(s as UIElement);
                     };
-                    await Task.Delay(10);
+                    await Task.Delay(10).ConfigureAwait(false);
                 }
-            }
-            else
-            {
-
             }
         }
 
