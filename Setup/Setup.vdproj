@@ -180,15 +180,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicC"
-        "ProductCode" = "8:{5D815E5D-1E31-464C-B9DC-7FE14C5EC81F}"
-        "PackageCode" = "8:{B2877E22-D37A-419A-B543-5F977451CC8B}"
+        "ProductCode" = "8:{FE44DF23-F286-4D44-ACF7-98400BE4959D}"
+        "PackageCode" = "8:{47BAB28A-E79A-4557-B009-669D3B832370}"
         "UpgradeCode" = "8:{88FC32E8-0016-47EB-8706-F83BC7E99EAB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.1"
+        "ProductVersion" = "8:2.0.2"
         "Manufacturer" = "8:GihanSoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -787,7 +787,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E480C98AF58642B882C7EB3E23602CFD"
             {
-            "SourcePath" = "8:..\\ComicC\\obj\\Release\\net461\\ComicC.exe"
+            "SourcePath" = "8:..\\ComicC\\obj\\Debug\\net461\\ComicC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BB93F0E110848F49F99FAE298C1CDCD"

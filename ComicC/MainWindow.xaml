@@ -24,22 +24,23 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <Button
+                Name="BtnStart"
                 Content="Start"
                 Margin="5"
                 Grid.Row="0"
-
                 HorizontalAlignment="Stretch"
                 Click="BtnStart_Click" />
             <CheckBox Name="ChkRemove" Content="remove source" Grid.Column="1" Margin="5 0" />
         </Grid>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid
+                Name="GrdDrop"
                 DragEnter="Grid_DragEnter" DragLeave="Grid_DragLeave" AllowDrop="True"
                 Drop="Grid_Drop"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}">
                 <StackPanel>
                     <StackPanel Name="SpChapters" />
-                    <Button Content="add chapter" Margin="10" Click="BtnAdd_Click" />
+                    <Button Name="BtnAdd" Content="add chapter" Margin="10" Click="BtnAdd_Click" />
                 </StackPanel>
                 <Border
                         Name="BrDrop"

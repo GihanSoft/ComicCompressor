@@ -18,11 +18,17 @@ namespace ComicC
 
         public string ChapterPath { get; }
 
-        public event RoutedEventHandler DeleteClicked;
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DeleteClicked?.Invoke(this, e);
+            DelClicked?.Invoke(this, e);
         }
+
+        public bool IsBtnDelEnabled
+        {
+            get => BtnDel.IsEnabled;
+            set => BtnDel.IsEnabled = value;
+        }
+
+        public event RoutedEventHandler DelClicked;
     }
 }

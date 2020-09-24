@@ -16,7 +16,7 @@
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Name="tb" VerticalAlignment="Center" Margin="5 0" />
-        <Button Content="del" Grid.Column="1" mah:ControlsHelper.CornerRadius="100"
+        <Button Name="BtnDel" Content="del" Grid.Column="1" mah:ControlsHelper.CornerRadius="100"
                 Height="{Binding ActualWidth, RelativeSource={RelativeSource self}}"
                 Click="Button_Click" Margin="2.5"
                 />

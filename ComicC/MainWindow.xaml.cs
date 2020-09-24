@@ -31,7 +31,7 @@ namespace ComicC
                 }
                 var chapterItem = new ChapterItem(item);
                 SpChapters.Children.Add(chapterItem);
-                chapterItem.DeleteClicked += (s, eventArg) =>
+                chapterItem.DelClicked += (s, eventArg) =>
                 {
                     SpChapters.Children.Remove(s as UIElement);
                 };
@@ -49,16 +49,21 @@ namespace ComicC
             {
                 foreach (var item in dialog.FileNames)
                 {
-                    if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
+                    var duplicate = Dispatcher.Invoke(() =>
+                        SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item));
+                    if (duplicate)
                     {
                         continue;
                     }
-                    var chapterItem = new ChapterItem(item);
-                    SpChapters.Children.Add(chapterItem);
-                    chapterItem.DeleteClicked += (s, eventArg) =>
+                    Dispatcher.Invoke(() =>
                     {
-                        SpChapters.Children.Remove(s as UIElement);
-                    };
+                        var chapterItem = new ChapterItem(item);
+                        SpChapters.Children.Add(chapterItem);
+                        chapterItem.DelClicked += (s, eventArg) =>
+                        {
+                            SpChapters.Children.Remove(s as UIElement);
+                        };
+                    });
                     await Task.Delay(10).ConfigureAwait(false);
                 }
             }
@@ -66,32 +71,59 @@ namespace ComicC
 
         private async void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in SpChapters.Children.Cast<ChapterItem>())
+            Dispatcher.Invoke(() =>
             {
-                item.Background = new SolidColorBrush(Colors.LightYellow);
+                BtnStart.IsEnabled = false;
+                BtnAdd.IsEnabled = false;
+                ChkRemove.IsEnabled = false;
+                GrdDrop.AllowDrop = false;
+            });
+            await Task.Delay(10).ConfigureAwait(false);
+
+            var chaptersCount = Dispatcher.Invoke(() => SpChapters.Children.Count);
+            for (int i = 0; i < chaptersCount; i++)
+            {
+                var item = Dispatcher.Invoke(() => SpChapters.Children[i] as ChapterItem);
+                Dispatcher.Invoke(() =>
+                {
+                    item.Background = new SolidColorBrush(Colors.LightYellow);
+                    item.IsBtnDelEnabled = false;
+                });
                 await Task.Delay(10).ConfigureAwait(false);
                 try
                 {
+                    var chapterPath = Dispatcher.Invoke(() => item.ChapterPath);
                     ZipFile.CreateFromDirectory(
-                        item.ChapterPath,
+                        chapterPath,
                         Path.Combine(
-                            Path.GetDirectoryName(item.ChapterPath),
-                            Path.GetFileName(item.ChapterPath)) + ".zip",
+                            Path.GetDirectoryName(chapterPath),
+                            Path.GetFileName(chapterPath)) + ".zip",
                         CompressionLevel.NoCompression,
                         false);
-                    if (ChkRemove.IsChecked ?? false)
+                    if (Dispatcher.Invoke(() => ChkRemove.IsChecked ?? false))
                     {
-                        Directory.Delete(item.ChapterPath, true);
+                        Directory.Delete(chapterPath, true);
                     }
                 }
                 catch (Exception err)
                 {
                     MessageBox.Show(err.Message, err.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
-                    item.Background = new SolidColorBrush(Colors.Red);
+                    Dispatcher.Invoke(() => item.Background = new SolidColorBrush(Colors.Red));
                 }
-                item.Background = new SolidColorBrush(Colors.LightGreen);
-                await Task.Delay(100).ConfigureAwait(false);
+                Dispatcher.Invoke(() =>
+                {
+                    item.Background = new SolidColorBrush(Colors.LightGreen);
+                    item.IsBtnDelEnabled = true;
+                });
+                await Task.Delay(10).ConfigureAwait(false);
             }
+            Dispatcher.Invoke(() =>
+            {
+                BtnStart.IsEnabled = true;
+                BtnAdd.IsEnabled = true;
+                ChkRemove.IsEnabled = true;
+                GrdDrop.AllowDrop = true;
+            });
         }
 
         private void Grid_DragEnter(object sender, DragEventArgs e)
@@ -108,21 +140,28 @@ namespace ComicC
 
         private async void Grid_Drop(object sender, DragEventArgs e)
         {
-            Grid_DragLeave(sender, e);
+            Dispatcher.Invoke(() => Grid_DragLeave(sender, e));
             var files = e.Data.GetData("FileDrop") as IEnumerable<string>;
             if (files.Any(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory)))
             {
                 files = files.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory));
                 foreach (var item in files)
                 {
-                    if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
-                        continue;
-                    var chapterItem = new ChapterItem(item);
-                    SpChapters.Children.Add(chapterItem);
-                    chapterItem.DeleteClicked += (s, eventArg) =>
+                    var duplicate = Dispatcher.Invoke(() =>
+                        SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item));
+                    if (duplicate)
                     {
-                        SpChapters.Children.Remove(s as UIElement);
-                    };
+                        continue;
+                    }
+                    Dispatcher.Invoke(() =>
+                    {
+                        var chapterItem = new ChapterItem(item);
+                        SpChapters.Children.Add(chapterItem);
+                        chapterItem.DelClicked += (s, eventArg) =>
+                        {
+                            SpChapters.Children.Remove(s as UIElement);
+                        };
+                    });
                     await Task.Delay(10).ConfigureAwait(false);
                 }
             }
