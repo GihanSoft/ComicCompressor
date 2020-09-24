@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ComicC
 {
@@ -21,27 +15,83 @@ namespace ComicC
         public SplashWin()
         {
             InitializeComponent();
+            var args = Environment.GetCommandLineArgs().ToList();
+            if (args.Count > 1)
+            {
+                args.RemoveAt(0);
+                Args = args.ToArray();
+            }
         }
+
+        private string[] Args { get; }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var win = new MainWindow();
+            MainWindow win;
+            if (Args != null)
+            {
+                var mangas = new List<string>();
+                var chapters = new List<string>();
+                var isM = false;
+                for (int i = 0; i < Args.Length; i++)
+                {
+                    var arg = Args[i];
+                    if (arg == "-m")
+                    {
+                        isM = true;
+                        continue;
+                    }
+                    if (arg == "-c")
+                    {
+                        isM = false;
+                        continue;
+                    }
+                    if (isM)
+                    {
+                        mangas.Add(arg);
+                    }
+                    else
+                    {
+                        chapters.Add(arg);
+                    }
+                }
+                chapters.AddRange(mangas.SelectMany(m => Directory.GetDirectories(m)));
+                win = new MainWindow(chapters.ToArray());
+            }
+            else
+            {
+                win = new MainWindow();
+            }
 
-            for(pb.Value = 1; pb.Value < pb.Maximum; pb.Value += 1)
-                await Task.Delay(10);
+            double val = 0;
+            Dispatcher.Invoke(() => val = pb.Value);
+            double max = 0;
+            Dispatcher.Invoke(() => max = pb.Maximum);
 
-            await Fade();
-            win.Show();
+            while (val < max)
+            {
+                await Task.Delay(10).ConfigureAwait(false);
+                Dispatcher.Invoke(() => pb.Value += 1);
+                Dispatcher.Invoke(() => val = pb.Value);
+                Dispatcher.Invoke(() => max = pb.Maximum);
+            }
+
+            await Fade().ConfigureAwait(false);
+            Dispatcher.Invoke(() => win.Show());
         }
 
         private async Task Fade()
         {
             for (int i = 0; i < 50; i++)
             {
-                Opacity = (100 - i * 2) * 0.01;
-                await Task.Delay(10);
+                Dispatcher.Invoke(() =>
+                {
+                    Opacity = (100 - i * 2) * 0.01;
+                });
+
+                await Task.Delay(10).ConfigureAwait(false);
             }
-            Close();
+            Dispatcher.Invoke(() => Close());
         }
     }
 }

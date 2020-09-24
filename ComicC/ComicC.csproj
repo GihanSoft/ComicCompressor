@@ -5,6 +5,7 @@
     <TargetFramework>net461</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>comicc.ico</ApplicationIcon>
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
