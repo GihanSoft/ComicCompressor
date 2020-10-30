@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="comicc.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="splash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
