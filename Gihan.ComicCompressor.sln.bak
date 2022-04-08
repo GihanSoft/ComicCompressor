@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{BAB600DA-AA1D-4174-A09C-339BB41D8486}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicC-GUI", "ComicC-GUI\ComicC-GUI.csproj", "{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicC-GUI", "ComicC\ComicC-GUI.csproj", "{FF772DE2-2C7B-4BC7-8304-12BA38B6F2B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

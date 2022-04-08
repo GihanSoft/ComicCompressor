@@ -8,7 +8,6 @@
 	  <LangVersion>latest</LangVersion>
 	  <EnableNETAnalyzers>True</EnableNETAnalyzers>
 	  <AnalysisLevel>latest-all</AnalysisLevel>
-	  <AssemblyName>ComicC-GUI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
