@@ -6,6 +6,9 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>comicc.ico</ApplicationIcon>
 	  <LangVersion>latest</LangVersion>
+	  <EnableNETAnalyzers>True</EnableNETAnalyzers>
+	  <AnalysisLevel>latest-all</AnalysisLevel>
+	  <AssemblyName>ComicC-GUI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

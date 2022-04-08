@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,14 +24,20 @@ namespace ComicC
 
         public MainWindow(string[] chapters) : this()
         {
+            if (chapters is null || chapters.Length is 0)
+            {
+                throw new ArgumentNullException(nameof(chapters));
+            }
+
             foreach (var item in chapters)
             {
                 if (SpChapters.Children.Cast<ChapterItem>().Select(c => c.ChapterPath).Contains(item))
                 {
                     continue;
                 }
+
                 var chapterItem = new ChapterItem(item);
-                SpChapters.Children.Add(chapterItem);
+                _ = SpChapters.Children.Add(chapterItem);
                 chapterItem.DelClicked += (s, eventArg) =>
                 {
                     SpChapters.Children.Remove(s as UIElement);
@@ -40,7 +47,7 @@ namespace ComicC
 
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new CommonOpenFileDialog
+            using var dialog = new CommonOpenFileDialog
             {
                 IsFolderPicker = true,
                 Multiselect = true
@@ -55,10 +62,11 @@ namespace ComicC
                     {
                         continue;
                     }
+
                     Dispatcher.Invoke(() =>
                     {
                         var chapterItem = new ChapterItem(item);
-                        SpChapters.Children.Add(chapterItem);
+                        _ = SpChapters.Children.Add(chapterItem);
                         chapterItem.DelClicked += (s, eventArg) =>
                         {
                             SpChapters.Children.Remove(s as UIElement);
@@ -97,26 +105,29 @@ namespace ComicC
                         chapterPath,
                         Path.Combine(
                             Path.GetDirectoryName(chapterPath),
-                            Path.GetFileName(chapterPath)) + ".zip",
+                            Path.GetFileName(chapterPath)) + ".cbz",
                         CompressionLevel.NoCompression,
                         false);
                     if (Dispatcher.Invoke(() => ChkRemove.IsChecked ?? false))
                     {
                         Directory.Delete(chapterPath, true);
                     }
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        item.Background = new SolidColorBrush(Colors.LightGreen);
+                        item.IsBtnDelEnabled = true;
+                    });
                 }
-                catch (Exception err)
+                catch (Exception err) when (err.Message?.Length is > 0)
                 {
-                    MessageBox.Show(err.Message, err.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
-                    Dispatcher.Invoke(() => item.Background = new SolidColorBrush(Colors.Red));
+                    _ = MessageBox.Show(err.Message, err.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _ = Dispatcher.Invoke(() => item.Background = new SolidColorBrush(Colors.Red));
                 }
-                Dispatcher.Invoke(() =>
-                {
-                    item.Background = new SolidColorBrush(Colors.LightGreen);
-                    item.IsBtnDelEnabled = true;
-                });
+
                 await Task.Delay(10).ConfigureAwait(false);
             }
+
             Dispatcher.Invoke(() =>
             {
                 BtnStart.IsEnabled = true;
@@ -128,7 +139,7 @@ namespace ComicC
 
         private void Grid_DragEnter(object sender, DragEventArgs e)
         {
-            (sender as Grid).CaptureMouse();
+            _ = (sender as Grid).CaptureMouse();
             BrDrop.Visibility = Visibility.Visible;
         }
 
@@ -153,10 +164,11 @@ namespace ComicC
                     {
                         continue;
                     }
+
                     Dispatcher.Invoke(() =>
                     {
                         var chapterItem = new ChapterItem(item);
-                        SpChapters.Children.Add(chapterItem);
+                        _ = SpChapters.Children.Add(chapterItem);
                         chapterItem.DelClicked += (s, eventArg) =>
                         {
                             SpChapters.Children.Remove(s as UIElement);
@@ -181,7 +193,7 @@ namespace ComicC
 
         private void BtnInfo_Click(object sender, RoutedEventArgs e)
         {
-            new InfoWin().ShowDialog();
+            _ = new InfoWin().ShowDialog();
         }
     }
 }

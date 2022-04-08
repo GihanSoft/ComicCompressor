@@ -41,11 +41,13 @@ namespace ComicC
                         isM = true;
                         continue;
                     }
+
                     if (arg == "-c")
                     {
                         isM = false;
                         continue;
                     }
+
                     if (isM)
                     {
                         mangas.Add(arg);
@@ -55,6 +57,7 @@ namespace ComicC
                         chapters.Add(arg);
                     }
                 }
+
                 chapters.AddRange(mangas.SelectMany(m => Directory.GetDirectories(m)));
                 win = new MainWindow(chapters.ToArray());
             }
@@ -64,16 +67,16 @@ namespace ComicC
             }
 
             double val = 0;
-            Dispatcher.Invoke(() => val = pb.Value);
+            _ = Dispatcher.Invoke(() => val = pb.Value);
             double max = 0;
-            Dispatcher.Invoke(() => max = pb.Maximum);
+            _ = Dispatcher.Invoke(() => max = pb.Maximum);
 
             while (val < max)
             {
                 await Task.Delay(10).ConfigureAwait(false);
-                Dispatcher.Invoke(() => pb.Value += 1);
-                Dispatcher.Invoke(() => val = pb.Value);
-                Dispatcher.Invoke(() => max = pb.Maximum);
+                _ = Dispatcher.Invoke(() => pb.Value += 1);
+                _ = Dispatcher.Invoke(() => val = pb.Value);
+                _ = Dispatcher.Invoke(() => max = pb.Maximum);
             }
 
             await Fade().ConfigureAwait(false);
@@ -86,11 +89,12 @@ namespace ComicC
             {
                 Dispatcher.Invoke(() =>
                 {
-                    Opacity = (100 - i * 2) * 0.01;
+                    Opacity = (100 - (i * 2)) * 0.01;
                 });
 
                 await Task.Delay(10).ConfigureAwait(false);
             }
+
             Dispatcher.Invoke(() => Close());
         }
     }
