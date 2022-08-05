@@ -2,7 +2,7 @@
   "profiles": {
     "ComicC-GUI": {
       "commandName": "Project",
-      "commandLineArgs": "-m D:\\Entertainment\\Manga\\Vagabond"
+      "commandLineArgs": "-c \"D:\\Entertainment\\Manga\\Vagabond\\Vagabond - 1\" \"D:\\Entertainment\\Manga\\Vagabond\\Vagabond - 2\""
     }
   }
 }
