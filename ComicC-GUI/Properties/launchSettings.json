@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ComicC-GUI": {
+      "commandName": "Project",
+      "commandLineArgs": "-m D:\\Entertainment\\Manga\\Vagabond"
+    }
+  }
+}

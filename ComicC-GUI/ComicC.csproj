@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>comicc.ico</ApplicationIcon>
-	  <LangVersion>latest</LangVersion>
-	  <EnableNETAnalyzers>True</EnableNETAnalyzers>
-	  <AnalysisLevel>latest-all</AnalysisLevel>
+    <LangVersion>latest</LangVersion>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest-all</AnalysisLevel>
+    <StartupObject>ComicC.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,14 +16,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="splash">
+    <Content Include="Views\splash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
-	<PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
   </ItemGroup>
 
 </Project>

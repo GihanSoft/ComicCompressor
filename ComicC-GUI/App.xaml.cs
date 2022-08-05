@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
-namespace ComicC
+namespace ComicC;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-    }
+    public static new App Current => Application.Current as App ??
+        throw new InvalidOperationException($"Current Application is not {nameof(App)}");
 }
