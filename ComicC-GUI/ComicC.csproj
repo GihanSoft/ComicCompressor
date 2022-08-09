@@ -9,6 +9,7 @@
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest-all</AnalysisLevel>
     <StartupObject>ComicC.Program</StartupObject>
+    <SatelliteResourceLanguages>en-US;fa</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Views\splash">
+    <Content Include="splash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
