@@ -10,16 +10,26 @@
     <AnalysisLevel>latest-all</AnalysisLevel>
     <StartupObject>ComicC.Program</StartupObject>
     <SatelliteResourceLanguages>en-US;fa</SatelliteResourceLanguages>
+    <Version>1.3.0</Version>
+    <Authors>Muhammad Babaie</Authors>
+    <Company>GihanSoft</Company>
+    <PackageProjectUrl>https://github.com/GihanSoft/ComicCompressor</PackageProjectUrl>
+    <PackageReadmeFile>LICENSE</PackageReadmeFile>
+    <PackageIcon>comicc.ico</PackageIcon>
+    <RepositoryUrl>https://github.com/GihanSoft/ComicCompressor</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="comicc.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="splash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +40,13 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="comicc.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
