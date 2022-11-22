@@ -6,40 +6,51 @@ namespace ComicC.Logics;
 
 public class ChapterVM : INotifyPropertyChanged
 {
-    private ChapterStatus status;
-    private Exception exception;
+
     private string path;
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public string Path
     {
         get => path;
-        set
-        {
-            path = value;
-            OnPropertyChanged();
-        }
+        set => SetFieldAndNotifyChanged(ref path, value.ToLower());
     }
 
+    private ChapterStatus status;
     public ChapterStatus Status
     {
         get => status;
-        set
-        {
-            status = value;
-            OnPropertyChanged();
-        }
+        set => SetFieldAndNotifyChanged(ref status, value);
     }
 
+    private Exception exception;
     public Exception Exception
     {
         get => exception;
-        set
+        set => SetFieldAndNotifyChanged(ref exception, value);
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private void SetFieldAndNotifyChanged<T>(ref T field, T value, bool notifyOnlyIfValueChanged = true, [CallerMemberName] string propertyName = null)
+    {
+        if (notifyOnlyIfValueChanged)
         {
-            exception = value;
-            OnPropertyChanged();
+            var same = (field, value) switch
+            {
+                (IEquatable<T> eq, T _) => eq.Equals(value),
+                (IComparable<T> eq, T _) => eq.CompareTo(value) == 0,
+                (null, null) => true,
+                (null, not null) or (not null, null) => false,
+
+                _ => field.Equals(value),
+            };
+            if (same)
+            {
+                return;
+            }
         }
+
+        field = value;
+        OnPropertyChanged(propertyName);
     }
 
     private void OnPropertyChanged([CallerMemberName] string propertyName = null)

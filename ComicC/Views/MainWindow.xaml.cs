@@ -1,20 +1,17 @@
-﻿using ComicC.Logics;
-
-using Microsoft.WindowsAPICodePack.Dialogs;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Input;
 using System.Windows.Threading;
 
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using ComicC.Logics;
+
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace ComicC;
 
@@ -47,23 +44,22 @@ public partial class MainWindow
 
     public async Task AddItemsAsync(IEnumerable<string> chapterPathes)
     {
+        HashSet<string> existingChapters = new(Chapters.Select(c => c.Path));
+
         foreach (var item in chapterPathes)
         {
-            var duplicate = Chapters.Any(c => c.Path == item);
-            if (duplicate)
+            if (!existingChapters.Contains(item.ToLower()))
             {
-                continue;
+                Chapters.Add(new ChapterVM { Path = item });
+                await Dispatcher.Yield();
             }
-
-            Chapters.Add(new ChapterVM { Path = item });
-            await Dispatcher.Yield();
         }
     }
 
     private void Item_DeleteClick(object sender, RoutedEventArgs e)
     {
-        var item = sender as ChapterItem ?? throw new InvalidCastException();
-        var chapterVM = item.DataContext as ChapterVM ?? throw new InvalidCastException();
+        var item = (ChapterItem)sender;
+        var chapterVM = (ChapterVM)item.DataContext;
         _ = Chapters.Remove(chapterVM);
     }
 
@@ -76,24 +72,29 @@ public partial class MainWindow
 
         await Dispatcher.Yield();
 
-        await ComicCompressorEngine.CompressComicsAsync(Chapters, ChkRemove.IsChecked ?? false, null)
-            .ConfigureAwait(true);
-
-        BtnStart.IsEnabled = true;
-        BtnAdd.IsEnabled = true;
-        ChkRemove.IsEnabled = true;
-        GrdDrop.AllowDrop = true;
+        try
+        {
+            await ComicCompressorEngine.CompressComicsAsync(Chapters, ChkRemove.IsChecked ?? false, null)
+                .ConfigureAwait(true);
+        }
+        finally
+        {
+            BtnStart.IsEnabled = true;
+            BtnAdd.IsEnabled = true;
+            ChkRemove.IsEnabled = true;
+            GrdDrop.AllowDrop = true;
+        }
     }
 
     private void Grid_DragEnter(object sender, DragEventArgs e)
     {
-        _ = (sender as Grid).CaptureMouse();
+        _ = ((Grid)sender).CaptureMouse();
         BrDrop.Visibility = Visibility.Visible;
     }
 
     private void Grid_DragLeave(object sender, DragEventArgs e)
     {
-        (sender as Grid).ReleaseMouseCapture();
+        ((Grid)sender).ReleaseMouseCapture();
         BrDrop.Visibility = Visibility.Collapsed;
     }
 
@@ -101,15 +102,17 @@ public partial class MainWindow
     {
         Grid_DragLeave(sender, e);
 
-        var files = e.Data.GetData("FileDrop") as IEnumerable<string>;
-        if (files.Any(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory)))
+        var folders = ((string[])e.Data.GetData(DataFormats.FileDrop))
+            .Where(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory))
+            .ToList();
+
+        if (folders.Count > 0)
         {
-            files = files.Where(f => File.GetAttributes(f).HasFlag(FileAttributes.Directory));
-            await AddItemsAsync(files).ConfigureAwait(false);
+            await AddItemsAsync(folders).ConfigureAwait(false);
         }
     }
 
-    private void Border_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void Border_MouseUp(object sender, MouseButtonEventArgs e)
     {
         BrdMenu.Visibility = Visibility.Collapsed;
     }

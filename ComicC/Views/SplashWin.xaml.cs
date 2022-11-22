@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace ComicC;
 
 /// <summary>
 /// Interaction logic for SplashWin.xaml
 /// </summary>
-public partial class SplashWin : Window
+public partial class SplashWin
 {
     private readonly DateTime startMoment = DateTime.Now;
     private readonly TimeSpan minimumViewDuration = TimeSpan.FromSeconds(2);
 
     public SplashWin()
     {
+        DataContext = this;
         InitializeComponent();
-    }
-
-    protected override void OnContentRendered(EventArgs e)
-    {
-        base.OnContentRendered(e);
     }
 
     public async Task CloseAsync()
@@ -37,6 +32,6 @@ public partial class SplashWin : Window
             await Task.Delay(10).ConfigureAwait(true);
         }
 
-        Dispatcher.Invoke(() => Close());
+        Close();
     }
 }

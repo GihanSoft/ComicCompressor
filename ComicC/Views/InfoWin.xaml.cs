@@ -1,4 +1,7 @@
-﻿namespace ComicC;
+﻿using System.Diagnostics;
+using System.Windows.Navigation;
+
+namespace ComicC;
 
 /// <summary>
 /// Interaction logic for InfoWin.xaml
@@ -10,8 +13,12 @@ public partial class InfoWin
         InitializeComponent();
     }
 
-    private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
     {
-        _ = System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+        ProcessStartInfo startInfo = new(e.Uri.AbsoluteUri)
+        {
+            UseShellExecute = true,
+        };
+        _ = Process.Start(startInfo);
     }
 }

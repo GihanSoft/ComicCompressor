@@ -10,7 +10,8 @@ namespace ComicC.Views.Converters;
 [ValueConversion(typeof(ChapterVM.ChapterStatus), typeof(Brush))]
 public class StatusToBrushConverter : IValueConverter
 {
-    public static readonly StatusToBrushConverter Instance = new();
+    public static readonly Lazy<StatusToBrushConverter> lazyInstance = new(() => new StatusToBrushConverter());
+    public static StatusToBrushConverter Instance => lazyInstance.Value;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {

@@ -11,15 +11,15 @@ using ComicC.Logics;
 
 namespace ComicC;
 
-public static class Program
+public static partial class Program
 {
-    [DllImport("Kernel32.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static extern bool AttachConsole(int processId);
+    [LibraryImport("Kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool AttachConsole(int processId);
 
-    [DllImport("Kernel32.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static extern bool FreeConsole();
+    [LibraryImport("Kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool FreeConsole();
 
     [STAThread]
     public static void Main(string[] args)
@@ -35,21 +35,21 @@ public static class Program
             var removeSourceOption = new Option<bool>(new[] { "--remove-source", "-r" });
 
             Command compressCommand = new("compress")
-        {
-            mangasOption,
-            chaptersOption,
-            removeSourceOption,
-        };
+            {
+                mangasOption,
+                chaptersOption,
+                removeSourceOption,
+            };
 
             compressCommand.SetHandler(HandleCompressCommand, mangasOption, chaptersOption, removeSourceOption);
 
             RootCommand rootCommand = new()
-        {
-            mangasOption,
-            chaptersOption,
+            {
+                mangasOption,
+                chaptersOption,
 
-            compressCommand,
-        };
+                compressCommand,
+            };
 
             rootCommand.SetHandler(MainSync, mangasOption, chaptersOption);
 
@@ -101,7 +101,12 @@ public static class Program
             {
                 ShutdownMode = ShutdownMode.OnExplicitShutdown,
             };
-            app.DispatcherUnhandledException += App_DispatcherUnhandledException;
+            app.DispatcherUnhandledException += (_, e) =>
+            {
+                _ = MessageBox.Show(e.Exception.Message, e.Exception.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+            };
+
             TaskCompletionSource<bool> mainEndTaskSignal = new();
             var mangaChapters = mangas.SelectMany(m => Directory.EnumerateDirectories(m));
             chapters = mangaChapters.Concat(chapters).ToArray();
@@ -121,12 +126,6 @@ public static class Program
         }
     }
 
-    private static void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-    {
-        _ = MessageBox.Show(e.Exception.Message, e.Exception.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
-        e.Handled = true;
-    }
-
     private static async Task MainAsync(string[] chapters, Task mainEndSignal)
     {
         await Task.Yield();
@@ -134,9 +133,8 @@ public static class Program
         await App.Current.Dispatcher.InvokeAsync(() => App.Current.InitializeComponent());
         await App.Current.Dispatcher.InvokeAsync(async () =>
         {
-            var splashWin = App.Current.MainWindow as SplashWin ??
-                throw new InvalidCastException($"main window is not {nameof(SplashWin)}");
-            await splashWin.CloseAsync().ConfigureAwait(true);
+            var splashWin = (SplashWin)App.Current.MainWindow;
+            await splashWin.CloseAsync().ConfigureAwait(false);
         }).Task.Unwrap().ConfigureAwait(false);
 
         await App.Current.Dispatcher.InvokeAsync(() =>

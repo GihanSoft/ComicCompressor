@@ -1,31 +1,45 @@
 ﻿<mah:MetroWindow
     x:Class="ComicC.InfoWin"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ComicC"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        mc:Ignorable="d"
-        Title="InfoWin" Height="450" Width="800">
-    <Grid>
-        <RichTextBox Margin="5" IsReadOnly="True" IsDocumentEnabled="True">
-            <RichTextBox.Document>
-                <FlowDocument>
-                    <Paragraph>
-                        <!--<Image Source="comicc.ico" Width="25" />-->
-                        <Run FontWeight="Bold" FontSize="30">ComicC</Run>
-                        <LineBreak />
-                        <Run FontSize="20">GihanSoft (c) 2020</Run>
-                    </Paragraph>
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ComicC"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d"
+    Title="InfoWin" Height="450" Width="800">
+  <RichTextBox Margin="5" IsReadOnly="True" IsDocumentEnabled="True">
+    <RichTextBox.Document>
+      <FlowDocument>
+        <Paragraph>
+          <!--<Image Source="comicc.ico" Width="25" />-->
+          <Run FontWeight="Bold" FontSize="30">ComicC</Run>
+          <LineBreak />
+          <Run FontSize="20">GihanSoft (c) 2020</Run>
+        </Paragraph>
 
-                    <Paragraph>
-                        this application used
-                        <Hyperlink NavigateUri="https://mahapps.com/" RequestNavigate="Hyperlink_RequestNavigate">MahApps.Metro</Hyperlink>
-                        for GUI theme and few extra controls
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox.Document>
-        </RichTextBox>
-    </Grid>
+        <Paragraph>
+          this application uses
+          <Hyperlink NavigateUri="https://mahapps.com/" RequestNavigate="Hyperlink_RequestNavigate">MahApps.Metro</Hyperlink>
+          under
+          <Run FontWeight="Bold">MIT</Run>
+          license
+          for GUI theme and few extra controls.
+        </Paragraph>
+        <Paragraph>
+          this application uses
+          <Hyperlink NavigateUri="https://github.com/dotnet/command-line-api" RequestNavigate="Hyperlink_RequestNavigate">System.CommandLine</Hyperlink>
+          under
+          <Run FontWeight="Bold">MIT</Run>
+          license
+          for handling process arguments command line interface.
+        </Paragraph>
+        <Paragraph>
+          this application uses
+          <Hyperlink NavigateUri="https://github.com/contre/Windows-API-Code-Pack-1.1" RequestNavigate="Hyperlink_RequestNavigate">Microsoft-WindowsAPICodePack-Shell</Hyperlink>
+          for folder selection dialog.
+        </Paragraph>
+      </FlowDocument>
+    </RichTextBox.Document>
+  </RichTextBox>
 </mah:MetroWindow>
