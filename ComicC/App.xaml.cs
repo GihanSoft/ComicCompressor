@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ComicC;
 
@@ -8,6 +7,5 @@ namespace ComicC;
 /// </summary>
 public partial class App : Application
 {
-    public static new App Current => Application.Current as App ??
-        throw new InvalidOperationException($"Current Application is not {nameof(App)}");
+    public static new App Current => (App)Application.Current;
 }
